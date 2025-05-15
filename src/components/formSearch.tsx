@@ -34,7 +34,7 @@ export function FormSearch() {
         <form
           onSubmit={handleSubmit(handleSearchTransaction)}
           id="formSearch"
-          className="flex w-full max-w-[1120px] flex-col items-center gap-4 md:flex-row md:items-end md:gap-8"
+          className="flex w-11/12 max-w-[1120px] flex-col items-center gap-4 md:flex-row md:items-end md:gap-8"
         >
           <div className="w-full md:flex-1">
             <Form.Field>
