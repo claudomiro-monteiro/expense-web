@@ -1,17 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Search } from 'lucide-react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useTransactionContext } from '../contexts/transaction-context'
 import { Form } from './form'
 import { Button } from './ui/button'
-import { Search } from 'lucide-react'
-import { useTransactionContext } from '../contexts/transaction-context'
 
 const createFormSchema = z.object({
   searchText: z.string(),
   dateInitial: z.string(),
   dateFinal: z.string(),
-  // .nonempty({ message: 'Faça sua busca.' })
-  // .min(3, 'Sua busca precisa ter mais de 3 caracteres.'),
 })
 
 type CreateFormData = z.infer<typeof createFormSchema>
@@ -31,14 +29,14 @@ export function FormSearch() {
   }
 
   return (
-    <div className="mt-16 flex w-full items-end justify-center">
+    <div className="mt-16 flex w-full items-end justify-center p-2">
       <FormProvider {...createForm}>
         <form
           onSubmit={handleSubmit(handleSearchTransaction)}
           id="formSearch"
-          className="flex w-full max-w-[1120px] items-end gap-8"
+          className="flex w-full max-w-[1120px] flex-col items-center gap-4 md:flex-row md:items-end md:gap-8"
         >
-          <div className="flex-1">
+          <div className="w-full md:flex-1">
             <Form.Field>
               <Form.Input
                 name="searchText"
@@ -47,33 +45,34 @@ export function FormSearch() {
               />
             </Form.Field>
           </div>
-
-          <div className="flex flex-col">
-            <Form.Label htmlFor="initialDate">Data inicial</Form.Label>
-            <Form.Field>
-              <Form.Input
-                name="dateInitial"
-                id="dateInitial"
-                type="date"
-                placeholder=""
-              />
-            </Form.Field>
-          </div>
-          <div className="flex flex-col">
-            <Form.Label htmlFor="finalDate">Data final</Form.Label>
-            <Form.Field>
-              <Form.Input
-                name="dateFinal"
-                id="dateFinal"
-                type="date"
-                placeholder=""
-              />
-            </Form.Field>
+          <div className="block w-full sm:flex sm:w-96 sm:space-x-6">
+            <div className="flex flex-col">
+              <Form.Label htmlFor="initialDate">Data inicial</Form.Label>
+              <Form.Field>
+                <Form.Input
+                  name="dateInitial"
+                  id="dateInitial"
+                  type="date"
+                  placeholder=""
+                />
+              </Form.Field>
+            </div>
+            <div className="flex flex-col">
+              <Form.Label htmlFor="finalDate">Data final</Form.Label>
+              <Form.Field>
+                <Form.Input
+                  name="dateFinal"
+                  id="dateFinal"
+                  type="date"
+                  placeholder=""
+                />
+              </Form.Field>
+            </div>
           </div>
           <Button
             type="submit"
             variant="secondary"
-            className="h-12 font-semibold text-base"
+            className="h-12 w-full font-semibold text-base md:w-40"
           >
             <Search />
             Buscar

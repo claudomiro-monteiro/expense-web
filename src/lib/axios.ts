@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  // baseURL: 'https://expenses-back-end.vercel.app',
-  baseURL: 'http://localhost:3333',
+  baseURL: 'https://expense-server-0eym.onrender.com',
+  // baseURL: 'http://localhost:3333',
 })

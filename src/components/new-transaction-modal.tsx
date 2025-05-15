@@ -1,12 +1,13 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { ArrowDownCircle, ArrowUpCircle, X } from 'lucide-react'
-import { Form } from './form'
-import { z } from 'zod'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from './ui/button'
+import { toast } from 'sonner'
+import { z } from 'zod'
 import { useTransactionContext } from '../contexts/transaction-context'
+import { Form } from './form'
+import { Button } from './ui/button'
 
 type CreateFormData = z.infer<typeof createFormSchema>
 
@@ -27,7 +28,7 @@ export function NewTransactionModal() {
     },
   })
 
-  const { handleSubmit, control } = createForm
+  const { handleSubmit, control, reset } = createForm
 
   async function handleCreateTransaction(data: CreateFormData) {
     const { description, price, category, type } = data
@@ -39,9 +40,10 @@ export function NewTransactionModal() {
         category,
         type,
       })
-
-      // reset()
+      toast.success('Despesa cadastrada com sucesso.')
+      reset()
     } catch (error) {
+      toast.error('Despesa não cadastrada, tente mais tarde.')
       console.log(error)
     }
   }
@@ -49,7 +51,7 @@ export function NewTransactionModal() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 bg-black/70" />
-      <Dialog.Content className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 min-w-[32rem] space-y-4 rounded-lg bg-zinc-800 px-12 py-10 text-zinc-50">
+      <Dialog.Content className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 min-w-[22rem] space-y-4 rounded-lg bg-zinc-800 px-4 py-6 text-zinc-50 sm:min-w-[32rem] sm:px-12 sm:py-10">
         <Dialog.Title className="font-semibold text-2xl">
           Nova transação
         </Dialog.Title>
@@ -71,6 +73,7 @@ export function NewTransactionModal() {
                 name="price"
                 id="price"
                 type="number"
+                step={0.01}
                 placeholder="Valor"
               />
             </Form.Field>

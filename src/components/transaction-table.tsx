@@ -6,14 +6,14 @@ export function TransactionTable() {
   const { transactions } = useTransactionContext()
 
   return (
-    <main className="mt-6 flex w-full justify-center">
-      <div className="flex min-w-[1120px]">
-        <table className="w-full border-separate border-spacing-y-2 text-zinc-50">
+    <main className="mt-6 flex w-full justify-center p-2">
+      <div className="flex overflow-x-auto">
+        <table className="w-full min-w-[1120px] border-separate border-spacing-y-2 text-zinc-50">
           <tbody>
             {transactions.map(transaction => {
               return (
                 <tr key={transaction.id} className="bg-zinc-700 font-semibold">
-                  <td className="w-1/2 rounded-tl-md rounded-bl-md px-10 py-4">
+                  <td className="w-1/4 rounded-tl-md rounded-bl-md px-10 py-4 md:w-1/2">
                     {transaction.description}
                   </td>
                   {transaction.type === 'income' ? (
