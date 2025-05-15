@@ -10,7 +10,7 @@ import { useKeenSlider } from 'keen-slider/react'
 export function Sumarry() {
   const summary = useSummary()
 
-  const [sliderRef, instanceRef] = useKeenSlider(
+  const [sliderRef] = useKeenSlider(
     {
       breakpoints: {
         '(min-width: 400px)': {
