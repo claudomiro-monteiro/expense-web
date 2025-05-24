@@ -13,7 +13,7 @@ export function TransactionTable() {
             {transactions.map(transaction => {
               return (
                 <tr key={transaction.id} className="bg-zinc-700 font-semibold">
-                  <td className="w-1/4 rounded-tl-md rounded-bl-md px-10 py-4 md:w-1/2">
+                  <td className="flex-1 rounded-tl-md rounded-bl-md px-10 py-4 md:w-1/2">
                     {transaction.description}
                   </td>
                   {transaction.type === 'income' ? (
@@ -21,13 +21,15 @@ export function TransactionTable() {
                       {priceFormatter.format(transaction.price)}
                     </td>
                   ) : (
-                    <td className=" px-10 py-4 text-red-400">
+                    <td className="w-[12rem] px-10 py-4 text-red-400">
                       - {priceFormatter.format(transaction.price)}
                     </td>
                   )}
 
-                  <td className=" px-10 py-4">{transaction.category}</td>
-                  <td className="rounded-tr-md rounded-br-md px-10 py-4">
+                  <td className="w-[15rem] px-10 py-4">
+                    {transaction.category}
+                  </td>
+                  <td className="w-[10rem] rounded-tr-md rounded-br-md px-10 py-4">
                     {dayjs(transaction.createdAt).format('DD/MM/YYYY')}
                   </td>
                 </tr>
