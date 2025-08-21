@@ -14,13 +14,13 @@ export function Sumarry() {
     {
       breakpoints: {
         '(min-width: 400px)': {
-          slides: { perView: 1, origin: 'auto', spacing: 5 },
+          slides: { perView: 1.1, origin: 'center', spacing: 10 },
         },
         '(min-width: 760px)': {
-          slides: { perView: 2, origin: 'auto', spacing: 5 },
+          slides: { perView: 2.1, origin: 'auto', spacing: 10 },
         },
         '(min-width: 1020px)': {
-          slides: { perView: 3, origin: 'auto', spacing: 10 },
+          slides: { perView: 3, origin: 'auto', spacing: 15 },
         },
       },
     },
